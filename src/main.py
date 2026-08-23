@@ -9,12 +9,12 @@ def main():
     node = TextNode("This is some anchor text", TextType.LINK, "https://www.boot.dev")
     print(node)
     static_dir = "static"
-    public_dir = "public"
+    docs_dir = "docs"
     basepath = sys.argv[1] if len(sys.argv) > 1 else "/"
 
-    if os.path.exists(public_dir):
-        shutil.rmtree(public_dir)
-    os.makedirs(public_dir)
+    if os.path.exists(docs_dir):
+        shutil.rmtree(docs_dir)
+    os.makedirs(docs_dir)
 
     def copy_static_to_public(source, destination):
         for item in os.listdir(source):
@@ -27,7 +27,7 @@ def main():
             else:
                 shutil.copy(source_path, destination_path)
 
-    copy_static_to_public(static_dir, public_dir)
-    generate_pages_recursive("content", "template.html", "docs", basepath)
+    copy_static_to_public(static_dir, docs_dir)
+    generate_pages_recursive("content", "template.html", docs_dir, basepath)
 
 main()

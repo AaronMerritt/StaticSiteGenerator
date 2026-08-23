@@ -26,8 +26,8 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, bas
 			page = template.replace("{{ Title }}", title).replace(
 				"{{ Content }}", html_node.to_html()
 			)
-			page = page.replace('href="/"', f'href="{basepath}"').replace(
-				'src="/"', f'src="{basepath}"'
+			page = page.replace('href="/', f'href="{basepath}').replace(
+				'src="/', f'src="{basepath}'
 			)
 			os.makedirs(os.path.dirname(destination_path), exist_ok=True)
 			with open(destination_path, "w", encoding="utf-8") as output_file:
